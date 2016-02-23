@@ -1,9 +1,16 @@
 AMuSt-ndnSIM: Adaptive Multimedia Streaming Framework for ndnSIM
 ======
 
-NOTE: This version works only with ndnSIM 2.1, and not with previous versions (2.0 and 1.0) of ndnSIM.
+NOTE: This version works only with ndnSIM 2.1, and not with previous versions (2.0 and 1.0) of ndnSIM. 
+**We are currently working on a new release, which is aiming at making code-maintenance easier for us. We've archived the stable version under [AMust-ndnSIM 2.1](https://github.com/ChristianKreuzberger/AMuSt-ndnSIM/releases).
+**
 
-This is a custom version of ndnSIM 2.01 supporting Adaptive Multimedia Streaming and the BRITE extension.
+AMuSt-ndnSIM is part of the [AMuSt Simulator Framework](https://github.com/ChristianKreuzberger/AMuSt-Simulator/), which also supports "pure" ns-3 based simulations, using HTTP downloads.
+
+---------------------------------------------
+
+
+This is a custom version of ndnSIM 2.1 supporting Adaptive Multimedia Streaming and the BRITE extension.
 Please refer to the original [ndnSIM github repository](http://github.com/named-data/ndnSIM) for documentation about
 ndnSIM and ns-3.
 
@@ -16,12 +23,12 @@ libdash.
 ## Installing Procedure
 
 * Install Pre-Requesits for ndn-cxx, NFD, ns-3, BRITE
-* Install Pre-Requesits for libdash
-* Clone git repositories
+* Install Pre-Requesits for AMuSt-libdash
+* Clone all relevant git repositories
 * Download Brite repository
 * Build Brite
-* Build libdash
-* Build ns-3 with amus-ndnSIM
+* Build AMuSt-libdash
+* Build ns-3 with AMuSt-ndnSIM
 
 
 ```bash
@@ -45,7 +52,7 @@ libdash.
 	git clone https://github.com/named-data-ndnSIM/ns-3-dev.git ns-3
 	git clone https://github.com/named-data-ndnSIM/pybindgen.git pybindgen
 	git clone --recursive https://github.com/ChristianKreuzberger/AMuSt-ndnSIM.git ns-3/src/ndnSIM
-	git clone https://github.com/bitmovin/libdash.git
+	git clone https://github.com/ChristianKreuzberger/AMuSt-libdash.git
 
 	# download and built BRITE
 	hg clone http://code.nsnam.org/BRITE
@@ -56,7 +63,7 @@ libdash.
 
 
 	# build libdash
-	cd libdash/libdash
+	cd AMuSt-libdash/libdash
 	mkdir build
 	cd build
 	cmake ../
@@ -113,18 +120,7 @@ Now install it and run a scenario to test it:
 
 
 ## Info about libdash
-If you have libdash already installed, make sure to specify the `--with-dash` option,e .g.:
-
-    ./waf configure -d optimized --with-brite=/home/$USER/ndnSIM/BRITE --with-dash=/path/to/libdash
-    
-    
-Make sure that the following files and subfolders are available in `/path/to/libdash`:
-
-* `libdash/include/libdash.h`
-* `build/bin/libdash.so`
-
-These are standard-paths as created by the makefile for libdash.
-
+We are using a custom version of libdash, so please make sure you use the version provided in the tutorial above.
 
 ---------------------------------------------
 
@@ -152,7 +148,9 @@ links:
 Citation
 ========
 We are currently working on a technical report/paper. For now, you can cite it by using the following text:
-Christian Kreuzberger, Daniel Posch, Benjamin Rainer, and Hermann Hellwagner, "Demo: amus-ndnSIM -- Adaptive Multimedia Streaming Simulator for NDN"
+
+    Christian Kreuzberger, Daniel Posch, Hermann Hellwagner "AMuSt Framework - Adaptive Multimedia Streaming Simulation Framework for ns-3 and ndnSIM", https://github.com/ChristianKreuzberger/AMust-Simulator/
+
 
 
 Acknowledgements

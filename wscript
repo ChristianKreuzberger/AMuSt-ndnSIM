@@ -17,7 +17,7 @@ def options(opt):
     opt.load(['doxygen', 'sphinx_build', 'type_traits', 'compiler-features', 'cryptopp', 'sqlite3'],
              tooldir=['%s/ndn-cxx/.waf-tools' % opt.path.abspath()])
     opt.add_option('--with-dash',
-                   help=('libdash path - assuming ../libdash/libdash/ if not provided'
+                   help=('libdash path - assuming ../AMuSt-libdash/libdash/ if not provided'
                          '  - should contain the following subfolders: libdash/include/, build/bin/ '
                          '  - should contain the following files: header files, shared object (libdash.so)'),
                    default=False, dest='with_dash')
@@ -43,20 +43,20 @@ def configure(conf):
     # check for libdash
     conf.env['ENABLE_DASH'] = False
     lib_to_check = 'libdash.so'
-    libdash_default_dir = "../libdash/libdash/" # according to tutorial
+    libdash_default_dir = "../AMuSt-libdash/libdash/" # according to tutorial
 
     if Options.options.with_dash:
-        conf.msg("Checking LIBDASH location", ("%s (given)" % Options.options.with_dash))
+        conf.msg("Checking AMuSt-libdash location", ("%s (given)" % Options.options.with_dash))
         libdash_dir = os.path.abspath(os.path.join(Options.options.with_dash, "build/bin/"))
         if os.path.exists(os.path.join(libdash_dir, lib_to_check)):
             conf.env['WITH_DASH'] = os.path.abspath(Options.options.with_dash)
         else:
             # Add this module to the list of modules that won't be built
             # if they are enabled.
-            Logs.error ("amus-ndnSIM requires libdash. Please consult the manual and documentation for details.")
+            Logs.error ("AMuSt-ndnSIM requires AMuSt-libdash. Please consult the manual and documentation for details.")
             Logs.error ("Could not find " +  lib_to_check  + " in " + os.path.join(libdash_dir, lib_to_check))
             conf.env['MODULES_NOT_BUILT'].append('dash')
-            conf.report_optional_feature("libdash", "LIBDASH Integration",  False, "Not found in " + str(Options.options.with_dash) + " (see option --with-dash)")
+            conf.report_optional_feature("libdash", "AMuSt-LIBDASH Integration",  False, "Not found in " + str(Options.options.with_dash) + " (see option --with-dash)")
             return
     else:
         # No user specified '--with-dash' option, try to guess
@@ -69,10 +69,10 @@ def configure(conf):
         else:
             # Add this module to the list of modules that won't be built
             # if they are enabled.
-            Logs.error ("amus-ndnSIM requires libdash. Please consult the manual and documentation for details.")
+            Logs.error ("AMuSt-ndnSIM requires AMuSt-libdash. Please consult the manual and documentation for details.")
             Logs.error ("Could not find " +  lib_to_check  + " in " + os.path.join(libdash_dir, lib_to_check))
             conf.env['MODULES_NOT_BUILT'].append('dash')
-            conf.report_optional_feature("libdash", "LIBDASH Integration",  False, "Not found in " + str(libdash_default_dir) + " (see option --with-dash)")
+            conf.report_optional_feature("libdash", "AMuSt-LIBDASH Integration",  False, "Not found in " + str(libdash_default_dir) + " (see option --with-dash)")
             return
     # end if - libdash should be found now
 
