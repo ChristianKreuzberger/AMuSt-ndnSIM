@@ -1,22 +1,26 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 /**
- * Copyright (c) 2015 Christian Kreuzberger and Daniel Posch, Alpen-Adria-University 
+ * Copyright (c) 2015-2016 Christian Kreuzberger and Daniel Posch, Alpen-Adria-University 
  * Klagenfurt
  *
- * This file is part of amus-ndnSIM, based on ndnSIM. See AUTHORS for complete list of 
+ * This file is part of AMuSt-ndnSIM, based on ndnSIM. See AUTHORS for complete list of 
  * authors and contributors.
  *
- * amus-ndnSIM and ndnSIM are free software: you can redistribute it and/or modify it 
+ * AMuSt-ndnSIM and ndnSIM are free software: you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the Free Software 
  * Foundation, either version 3 of the License, or (at your option) any later version.
  *
- * amus-ndnSIM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * AMuSt-ndnSIM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  * PURPOSE.  See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
  * amus-ndnSIM, e.g., in COPYING.md file.  If not, see <http://www.gnu.org/licenses/>.
  **/
+
+/** This example is based on ndn-simple.cpp, as seen in the ndnSIM 2.1 tutorial here: 
+ * http://ndnsim.net/2.1/examples.html
+*/
 
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
@@ -30,7 +34,7 @@ int
 main(int argc, char* argv[])
 {
   // setting default parameters for PointToPoint links and channels
-  Config::SetDefault("ns3::PointToPointNetDevice::DataRate", StringValue("10Mbps"));
+  Config::SetDefault("ns3::PointToPointNetDevice::DataRate", StringValue("1Mbps"));
   Config::SetDefault("ns3::PointToPointChannel::Delay", StringValue("10ms"));
   Config::SetDefault("ns3::DropTailQueue::MaxPackets", StringValue("20"));
 
@@ -50,8 +54,6 @@ main(int argc, char* argv[])
   // Install NDN stack on all nodes
   ndn::StackHelper ndnHelper;
   ndnHelper.SetDefaultRoutes(true);
-  ndnHelper.setCsSize(0);
-  ndnHelper.SetOldContentStore("ns3::ndn::cs::Lru", "MaxSize", "100");
   ndnHelper.InstallAll();
 
   // Choosing forwarding strategy
@@ -61,7 +63,7 @@ main(int argc, char* argv[])
   ndn::AppHelper consumerHelper("ns3::ndn::FileConsumer");
   consumerHelper.SetAttribute("FileToRequest", StringValue("/myprefix/file1.img"));
 
-  consumerHelper.Install(nodes.Get(2)); // install to some node from nodelist
+  consumerHelper.Install(nodes.Get(0)); // install to some node from nodelist
 
   // Producer
   ndn::AppHelper producerHelper("ns3::ndn::FileServer");
@@ -69,12 +71,12 @@ main(int argc, char* argv[])
   // Producer will reply to all requests starting with /prefix
   producerHelper.SetPrefix("/myprefix");
   producerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/somedata/"));
-  producerHelper.Install(nodes.Get(0)); // install to some node from nodelist
+  producerHelper.Install(nodes.Get(2)); // install to some node from nodelist
 
   ndn::GlobalRoutingHelper ndnGlobalRoutingHelper;
   ndnGlobalRoutingHelper.InstallAll();
 
-  ndnGlobalRoutingHelper.AddOrigins("/myprefix", nodes.Get(0));
+  ndnGlobalRoutingHelper.AddOrigins("/myprefix", nodes.Get(2));
   ndn::GlobalRoutingHelper::CalculateRoutes();
 
   Simulator::Stop(Seconds(600.0));

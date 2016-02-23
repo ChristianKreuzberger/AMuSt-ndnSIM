@@ -83,7 +83,7 @@ main(int argc, char* argv[])
   for (uint32_t i = 0; i < bth.GetNAs(); i++)
   {
     std::cout << "Number of nodes for AS: " << bth.GetNNodesForAs(i) << ", non leaf nodes: " << bth.GetNNonLeafNodesForAs(i) << std::endl;
-    for(int node=0; node < bth.GetNNonLeafNodesForAs(i); node++)
+    for(uint32_t node=0; node < bth.GetNNonLeafNodesForAs(i); node++)
     {
       std::cout << "Node " << node << " has " << bth.GetNonLeafNodeForAs(i,node)->GetNDevices() << " devices " << std::endl;
       //container.Add (briteHelper->GetNodeForAs (ASnumber,node));
