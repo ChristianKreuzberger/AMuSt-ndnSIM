@@ -153,7 +153,7 @@ main(int argc, char* argv[])
 
   // Randomize Client File Selection
   Ptr<UniformRandomVariable> r = CreateObject<UniformRandomVariable>();
-  for(int i=0; i<client.size (); i++)
+  for(uint32_t i=0; i<client.size (); i++)
   {
     // TODO: Make some logic to decide which file to request
     consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/SVC/BBB/BBB-III.mpd" )));
