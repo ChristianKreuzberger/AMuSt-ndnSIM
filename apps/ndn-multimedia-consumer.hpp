@@ -50,8 +50,7 @@
 #include "ns3/double.h"
 
 #include "libdash.h"
-
-#include "utils/multimedia/multimedia-player.hpp"
+#include "multimedia-player.h"
 
 #include "boost/algorithm/string/predicate.hpp"
 #include <boost/random/random_device.hpp>

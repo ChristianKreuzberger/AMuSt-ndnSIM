@@ -36,8 +36,6 @@
 #include "model/ndn-app-face.hpp"
 
 
-#include "utils/multimedia/multimedia-player.hpp"
-
 
 
 NS_LOG_COMPONENT_DEFINE("ndn.MultimediaConsumer");
