@@ -67,17 +67,17 @@ main(int argc, char* argv[])
   consumerHelper.SetAttribute("StartUpDelay", StringValue("0.1"));
 
   consumerHelper.SetAttribute("AdaptationLogic", StringValue("dash::player::RateAndBufferBasedAdaptationLogic"));
-  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/AVC/BBB/BBB-2s.mpd" )));
+  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/AVC/BBB-2s.mpd" )));
 
   //consumerHelper.SetPrefix (std::string("/Server_" + boost::lexical_cast<std::string>(i%server.size ()) + "/layer0"));
   ApplicationContainer app1 = consumerHelper.Install (nodes.Get(2));
 
-   // Producer
+  // Producer
   ndn::AppHelper producerHelper("ns3::ndn::FileServer");
 
   // Producer will reply to all requests starting with /myprefix
   producerHelper.SetPrefix("/myprefix");
-  producerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/multimediaData/"));
+  producerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/multimediaData"));
   producerHelper.Install(nodes.Get(0)); // install to some node from nodelist
 
   ndn::GlobalRoutingHelper ndnGlobalRoutingHelper;
@@ -86,7 +86,7 @@ main(int argc, char* argv[])
   ndnGlobalRoutingHelper.AddOrigins("/myprefix", nodes.Get(0));
   ndn::GlobalRoutingHelper::CalculateRoutes();
 
-  Simulator::Stop(Seconds(60.0));
+  Simulator::Stop(Seconds(1200.0));
 
   Simulator::Run();
   Simulator::Destroy();

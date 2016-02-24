@@ -23,7 +23,6 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/ndnSIM-module.h"
 #include "ns3/ndnSIM/apps/ndn-app.hpp"
-#include "ns3/ndnSIM/utils/tracers/ndn-dashplayer-tracer.hpp"
 
 namespace ns3 {
 
@@ -69,7 +68,7 @@ main(int argc, char* argv[])
   consumerHelper.SetAttribute("StartUpDelay", StringValue("0.1"));
 
   consumerHelper.SetAttribute("AdaptationLogic", StringValue("dash::player::SVCBufferBasedAdaptationLogic"));
-  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/SVC/BBB/BBB-III.mpd" )));
+  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/SVC/BBB-III.mpd" )));
 
   ApplicationContainer app1 = consumerHelper.Install (nodes.Get(2));
 
@@ -78,7 +77,7 @@ main(int argc, char* argv[])
 
   // Producer will reply to all requests starting with /myprefix
   producerHelper.SetPrefix("/myprefix");
-  producerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/multimediaData/"));
+  producerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/multimediaData"));
   producerHelper.Install(nodes.Get(0)); // install to some node from nodelist
 
   ndn::GlobalRoutingHelper ndnGlobalRoutingHelper;

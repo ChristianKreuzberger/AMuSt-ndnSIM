@@ -65,7 +65,7 @@ main(int argc, char* argv[])
   consumerHelper.SetAttribute("StartUpDelay", StringValue("0.1"));
 
   consumerHelper.SetAttribute("AdaptationLogic", StringValue("dash::player::SVCBufferBasedAdaptationLogic"));
-  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/SVC/BBB/BBB-III.mpd" )));
+  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/SVC/BBB-III.mpd" )));
 
   ApplicationContainer app1 = consumerHelper.Install (nodes.Get(2));
 

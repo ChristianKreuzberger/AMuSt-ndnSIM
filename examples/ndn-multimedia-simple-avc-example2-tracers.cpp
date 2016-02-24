@@ -23,7 +23,7 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/ndnSIM-module.h"
 #include "ns3/ndnSIM/apps/ndn-app.hpp"
-#include "ns3/ndnSIM/utils/tracers/ndn-dashplayer-tracer.hpp"
+
 
 namespace ns3 {
 
@@ -69,17 +69,25 @@ main(int argc, char* argv[])
   consumerHelper.SetAttribute("StartUpDelay", StringValue("0.1"));
 
   consumerHelper.SetAttribute("AdaptationLogic", StringValue("dash::player::RateAndBufferBasedAdaptationLogic"));
-  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/AVC/BBB/BBB-2s.mpd" )));
+  consumerHelper.SetAttribute("MpdFileToRequest", StringValue(std::string("/myprefix/AVC/BBB-2s.mpd" )));
 
   ApplicationContainer app1 = consumerHelper.Install (nodes.Get(2));
 
-   // Producer
-  ndn::AppHelper producerHelper("ns3::ndn::FileServer");
+  // Producer responsible for hosting the MPD file
+  ndn::AppHelper mpdProducerHelper("ns3::ndn::FileServer");
 
-  // Producer will reply to all requests starting with /myprefix
-  producerHelper.SetPrefix("/myprefix");
-  producerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/multimediaData/"));
-  producerHelper.Install(nodes.Get(0)); // install to some node from nodelist
+  // Producer will reply to all requests starting with /myprefix/AVC/ and hosts the mpd file there
+  mpdProducerHelper.SetPrefix("/myprefix");
+  mpdProducerHelper.SetAttribute("ContentDirectory", StringValue("/home/someuser/multimediaData"));
+  mpdProducerHelper.Install(nodes.Get(0)); // install to some node from nodelist
+
+  // Producer responsible for hosting the virtual segments
+  ndn::AppHelper fakeSegmentProducerHelper("ns3::ndn::FakeFileServer");
+
+  // Producer will reply to all requests starting with /myprefix/AVC/BBB/ and hosts the virtual segment files there
+  fakeSegmentProducerHelper.SetPrefix("/myprefix/AVC/BBB");
+  fakeSegmentProducerHelper.SetAttribute("MetaDataFile", StringValue("dash_dataset_avc_bbb.csv"));
+  fakeSegmentProducerHelper.Install(nodes.Get(0)); // install to some node from nodelist
 
   ndn::GlobalRoutingHelper ndnGlobalRoutingHelper;
   ndnGlobalRoutingHelper.InstallAll();
