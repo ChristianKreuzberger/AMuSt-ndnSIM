@@ -111,7 +111,7 @@ FakeFileServer::StartApplication()
   std::ifstream infile(m_metaDataFile.c_str());
   if (!infile.is_open())
   {
-    fprintf(stderr, "FakeFileServer: Error opening %s\n", m_metaDataFile.c_str());
+    NS_LOG_ERROR("FakeFileServer: Error opening " << m_metaDataFile << " - simulations will most likely not work!");
     return;
   }
 
@@ -121,7 +121,8 @@ FakeFileServer::StartApplication()
   std::string line;
   std::vector<std::string> vecLine;
 
-  fprintf(stderr, "Reading list of file sizes from %s\n", m_metaDataFile.c_str());
+  NS_LOG_UNCOND("FakeFileServer: Reading list of file sizes from " << m_metaDataFile);
+
 
 
   while (std::getline(infile,line))

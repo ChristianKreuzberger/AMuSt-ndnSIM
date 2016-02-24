@@ -503,14 +503,14 @@ FileConsumer::OnData(shared_ptr<const Data> data)
       memcpy(&maxPayload, buffer+sizeof(long), sizeof(unsigned));
 
 
-      NS_LOG_UNCOND("Received Manifest! FileSize=" << fileSize << ", MaxPayload=" << maxPayload);
+      NS_LOG_DEBUG("FileConsumer: Received Manifest! FileSize=" << fileSize << ", MaxPayload=" << maxPayload);
       m_hasReceivedManifest = true;
       m_fileSize = fileSize;
       m_maxPayloadSize = maxPayload;
 
       if (m_fileSize == -1)
       {
-        NS_LOG_UNCOND("ERROR: File not found: " << interestName);
+        NS_LOG_UNCOND("ERROR: FileConsumer: File not found on server: " << interestName);
         m_fileSize = 0;
         m_curSeqNo = 0;
         m_maxSeqNo = 0;
@@ -518,7 +518,7 @@ FileConsumer::OnData(shared_ptr<const Data> data)
       {
         m_curSeqNo = 0;
         m_maxSeqNo = ceil((double)m_fileSize/(double)m_maxPayloadSize);
-        NS_LOG_UNCOND("Resulting Max Seq Nr = " << m_maxSeqNo);
+        NS_LOG_DEBUG("FileConsumer: Resulting Max Seq Nr = " << m_maxSeqNo);
 
         // Trigger OnManifest
         m_chunkTimeoutEvents[0].Cancel();
