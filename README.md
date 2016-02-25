@@ -67,12 +67,12 @@ libdash.
 	mkdir build
 	cd build
 	cmake ../
-	make dash # only build dash, no need for network stuff
+	make dash # only build dash, no need to build the network stuff
 	cd ../../../
 
 	# build ns-3/ndnSIM with brite and dash enabled
 	cd ns-3
-	./waf configure -d optimized --with-brite=../BRITE --with-pybindgen=../pybindgen
+	./waf configure -d optimized --with-pybindgen=../pybindgen
 	./waf
 ```
 
@@ -108,30 +108,29 @@ Build examples                : not enabled (defaults to disabled)
 GNU Scientific Library (GSL)  : not enabled (GSL not found)
 ```
 
+
 Now install it and run a scenario to test it:
 
 ```
-	sudo ./waf install
+    # build
+    ./waf
 
-
-	# run a scenario
-	./waf --run ndn-file-cbr
+    # run a scenario
+    ./waf --run ndn-file-cbr
 ```
 
 
-## Info about libdash
-We are using a custom version of libdash, so please make sure you use the version provided in the tutorial above.
 
 ---------------------------------------------
 
 ## Tutorial
-Please take a look at [this README](README_AMUS.md), and the scenario template below.
-
-## Scenario Template
-In addition, we also provide a scenario-template. All you need to do is download and install amus-ndnSIM once, and then
-continue with the [amus-ndnSIM scenario template](http://github.com/ChristianKreuzberger/amus-scenario).
+Please take a look at [this README](https://github.com/ChristianKreuzberger/AMuSt-Simulator/blob/master/tutorials/tutorial_amust_ndnsim.md)
 
 ---------------------------------------------
+
+## Info about libdash
+We are using a custom version of libdash [AMuSt-libdash](), so please make sure you use the version provided in the tutorial above.
+
 
 ## What is MPEG-DASH?
 MPEG-DASH (ISO/IEC 23009-1:2012) is a standard for adaptive multimedia streaming over HTTP connections, which is 
