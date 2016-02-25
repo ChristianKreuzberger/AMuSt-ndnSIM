@@ -11,8 +11,7 @@ AMuSt-ndnSIM is part of the [AMuSt Simulator Framework](https://github.com/Chris
 
 
 This is a custom version of ndnSIM 2.1 supporting Adaptive Multimedia Streaming and the BRITE extension.
-Please refer to the original [ndnSIM github repository](http://github.com/named-data/ndnSIM) for documentation about
-ndnSIM and ns-3.
+Please refer to the original [ndnSIM github repository](http://github.com/named-data/ndnSIM) for documentation about ndnSIM and ns-3.
 
 Adaptive Multimedia Streaming Framework for ndnSIM is trying to create a bridge between the multimedia and NDN community.
 Therefore it is providing several scenarios and the source code for adaptive streaming with NDN, based on ndnSIM and
@@ -124,12 +123,13 @@ Now install it and run a scenario to test it:
 ---------------------------------------------
 
 ## Tutorial
-Please take a look at [this README](https://github.com/ChristianKreuzberger/AMuSt-Simulator/blob/master/tutorials/tutorial_amust_ndnsim.md)
+Please take a look at the [AMuSt-ndnSIM tutorial](https://github.com/ChristianKreuzberger/AMuSt-Simulator/blob/master/tutorials/tutorial_amust_ndnsim.md) and [AMuSt-libdash information](https://github.com/ChristianKreuzberger/AMuSt-libdash/blob/master/tutorial.md).
+
 
 ---------------------------------------------
 
 ## Info about libdash
-We are using a custom version of libdash [AMuSt-libdash](), so please make sure you use the version provided in the tutorial above.
+We are using a custom version of libdash [AMuSt-libdash](https://github.com/ChristianKreuzberger/AMuSt-libdash), so please make sure you use the version provided in the tutorial above.
 
 
 ## What is MPEG-DASH?
