@@ -144,12 +144,20 @@ links:
 
 ---------------------------------------------
 
-Citation
-========
+## Citation
 We are currently working on a technical report/paper. For now, you can cite it by using the following text:
 
-    Christian Kreuzberger, Daniel Posch, Hermann Hellwagner "AMuSt Framework - Adaptive Multimedia Streaming Simulation Framework for ns-3 and ndnSIM", https://github.com/ChristianKreuzberger/AMust-Simulator/
+Christian Kreuzberger, Daniel Posch, Hermann Hellwagner "AMuSt Framework - Adaptive Multimedia Streaming Simulation Framework for ns-3 and ndnSIM", https://github.com/ChristianKreuzberger/AMust-Simulator/
 
+Bibtex:
+```
+@misc{kreuzberger2016amust,
+  title={AMuSt Framework - Adaptive Multimedia Streaming Simulation Framework for ns-3 and ndnSIM},
+  author={Kreuzberger, Christian and Posch, Daniel and Hellwagner, Hermann},
+  journal={https://github.com/ChristianKreuzberger/amust-simulator},
+  year={2016}
+}
+```
 
 
 Acknowledgements
